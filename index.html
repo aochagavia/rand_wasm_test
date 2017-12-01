@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+    <h2>Testing rand and pcg_rand</h2>
+    <p>
+      Generate random numbers by clicking on the button below.
+    </p>
+    <button id="button">Click me :)</button>
+    <p>Last generated random number is: <span id="number">none</span></p>
+
+<script src="bundle.js"></script>
+<script>
+  window.Module = {};
+
+  fetchAndInstantiate("program.wasm", {})
+    .then(mod => {
+      Module.get_rand = mod.exports.get_rand;
+      Module.memory  = mod.exports.memory;
+      
+      let button = document.getElementById('button');
+      let number = document.getElementById('number');
+      
+      button.addEventListener("click", function(e) {
+        number.innerText = Module.get_rand();
+      });
+    });
+</script>
+  </body>
+</html>
