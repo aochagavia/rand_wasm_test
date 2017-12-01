@@ -1,0 +1,12 @@
+[package]
+name = "rand_test"
+version = "0.1.0"
+authors = ["Adolfo Ochagavía <aochagavia92@gmail.com>"]
+
+[dependencies]
+rand = "0.3.18"
+pcg_rand = "0.7.1"
+lazy_static = "1.0"
+
+[patch.crates-io]
+rand = { git = "https://github.com/aochagavia/rand.git", branch="wasm" }
